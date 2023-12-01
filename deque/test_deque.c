@@ -56,4 +56,5 @@ int main() {
     back_test(deque);
     iteration_test(deque);
     printf("All asserts passed");
+    destroy_deque(deque);
 }
