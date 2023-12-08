@@ -1,0 +1,5 @@
+Test Deque: gcc data_structures/deque/test_deque.c data_structures/deque/deque.c data_structures/node/node.c -o test
+
+Compile Deque: gcc -c data_structures/deque/deque.c data_structures/node/node.c && ar cr deque.a deque.o node.o && del deque.o node.o && move /Y deque.a programs/
+
+Compile BigNumber: gcc programs/big_number.c programs/deque.a -o programs/big_number
