@@ -1,21 +1,25 @@
 #include "node.h"
 #include <stdlib.h>
+#include <stdbool.h>
 
 struct node {
-    int value;
+    const char* value;
     struct node* previous;
     struct node* next;
+    bool allocated;
 };
 
-short get_node_size(void) {
+int get_node_size(void) {
     return sizeof(struct node);
 }
 
-short get_value(struct node* node) {
+const char* get_value(struct node* node) {
+    if (node == NULL)
+        return NULL;
     return node->value;
 }
 
-void set_value(struct node* node, short value) {
+void set_value(struct node* node, const char* value) {
     node->value = value;
 }
 
@@ -39,7 +43,7 @@ struct node* set_previous(struct node* node, struct node* other) {
     return node;
 }
 
-struct node* build_node(short value) {
+struct node* build_node(const char* value, bool allocated) {
     struct node* node = malloc(get_node_size());
     node->next = NULL;
     node->previous = NULL;
@@ -48,5 +52,7 @@ struct node* build_node(short value) {
 }
 
 void destroy_node(struct node* node) {
+    if (node->allocated)
+        free((char*)node->value);
     free(node);
 }
